@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bdk = { version = "0.28.0", features = ["all-keys", "verify"]}
+bdk = { version = "0.28.0", features = ["all-keys", "verify"] }
 tokio = { version = "1.29.1", features = ["full"] }
 serde_json = "1.0.103"
 

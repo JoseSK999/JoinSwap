@@ -235,7 +235,7 @@ async fn send_utxo_data(wallet: &Wallet<AnyDatabase>, writer: &mut WriteHalf<Tcp
     let (_, desc) = pub_desc.find_derivation_index_for_spk(
         &Secp256k1::new(),
         &utxos[0].txout.script_pubkey,
-        0..1
+        0..1,
     ).unwrap().unwrap();
 
     send_message(desc.to_string(), writer).await;
@@ -302,7 +302,7 @@ fn check_psbts(
         .zip(prevouts)
         .map(|(input, prevout)| {
             let vout = prevout.vout as usize;
-            input.non_witness_utxo.as_ref().unwrap().output[vout].value.clone()
+            input.non_witness_utxo.as_ref().unwrap().output[vout].value
         });
 
     // 4)

@@ -140,7 +140,7 @@ async fn main() {
 
         psbt.unsigned_tx.output.iter()
             .filter(|txout| txout.script_pubkey == desc.script_pubkey())
-            .for_each(|txout| total_spent += txout.value.clone());
+            .for_each(|txout| total_spent += txout.value);
         total_spent += psbt.fee_amount().unwrap();
 
         let finalized = wallet.sign(&mut psbt, SignOptions::default()).unwrap();
@@ -188,7 +188,7 @@ async fn main() {
         .replace(&key1_a.to_string(), &prv_keys[0].to_string())
         .replace(&key1_b.to_string(), &prv_keys[1].to_string());
 
-    let total_received = funding_final.unsigned_tx.output[0].value.clone();
+    let total_received = funding_final.unsigned_tx.output[0].value;
     let profit = total_received - total_spent;
 
     println!("\nSuccesful JoinSwap! Maker earned {profit} sats");
